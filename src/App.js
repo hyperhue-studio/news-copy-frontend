@@ -9,6 +9,8 @@ function App() {
   const [facebookCopy, setFacebookCopy] = useState("");
   const [twitterCopy, setTwitterCopy] = useState("");
   const [wppCopy, setWppCopy] = useState("");
+  const [foundCopies, setFoundCopies] = useState([]);
+
 
   const [showModal, setShowModal] = useState(false);
   const [showSearchModal, setShowSearchModal] = useState(false); // Nuevo estado
@@ -26,6 +28,8 @@ function App() {
       setFacebookCopy(data.facebook || "");
       setTwitterCopy(data.twitter || "");
       setWppCopy(data.wpp || "");
+      // Si data.foundCopies existe, lo guardas en foundCopies
+      setFoundCopies(data.foundCopies || []);
     } catch (error) {
       console.error("Error generando copy:", error);
       alert("Hubo un error al generar el copy.");
@@ -113,6 +117,20 @@ function App() {
           <button onClick={() => copyToClipboard(wppCopy)}>Copiar</button>
         </div>
       </div>
+
+  {/* Bloque que muestra los copies encontrados en Pinecone */}
+{foundCopies.length > 0 && (
+  <div style={{ marginTop: "20px", backgroundColor: "#2c2c2c", padding: "15px", borderRadius: "8px" }}>
+    <h3 style={{ textAlign: "center" }}>Copies de Referencia (RAG)</h3>
+    {foundCopies.map((item, i) => (
+      <p key={i} style={{ margin: "8px 0", textAlign: "center" }}>
+        {item.copy}
+      </p>
+    ))}
+  </div>
+)}
+
+      
 
       {/* Modal para Indexar Noticias */}
       {showModal && (
