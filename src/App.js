@@ -21,7 +21,7 @@ function App() {
       return;
     }
     try {
-      const resp = await axios.post(`${backendUrl}/generar_copy_rag`, { url: urlNoticia });
+      const resp = await axios.post(`${backendUrl}/generate-copies`, { url: urlNoticia });
       const data = resp.data;
       setFacebookCopy(data.facebook || "");
       setTwitterCopy(data.twitter || "");
