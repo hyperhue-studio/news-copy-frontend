@@ -2,9 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 function BuscarSimilar() {
-  // Campo de texto para la consulta
   const [consulta, setConsulta] = useState("");
-  // Guardará el resultado más parecido
   const [resultado, setResultado] = useState(null);
 
   const backendUrl = "https://news-copy-backend.onrender.com";

@@ -1,5 +1,5 @@
 /* ═════════════════════════════════════
-   1) RESET GLOBAL Y FONDO OSCURO
+   1) RESET GLOBAL Y FONDO CLARO CON GRADIENTE RADIAL
    ═════════════════════════════════════ */
 * {
   margin: 0;
@@ -12,10 +12,9 @@ body,
 #root {
   height: 100%;
   width: 100%;
-  background-color: #1f1f1f;
-  /* Fondo oscuro principal */
-  font-family: Arial, sans-serif;
-  color: #f2f2f2;
+  background: radial-gradient(circle, #a3c2f5, #ffffff);
+  font-family: 'Arial', sans-serif;
+  color: #333;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,8 +22,8 @@ body,
 }
 
 /* ═════════════════════════════════════
-     2) CONTENEDOR PRINCIPAL DE LA APP
-     ═════════════════════════════════════ */
+       2) CONTENEDOR PRINCIPAL DE LA APP
+       ═════════════════════════════════════ */
 .App {
   width: 90%;
   max-width: 1000px;
@@ -33,247 +32,285 @@ body,
   flex-direction: column;
   align-items: center;
   padding: 40px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 12px;
 }
 
 /* ═════════════════════════════════════
-     3) SECCIÓN TÍTULO + BOTÓN FLOTANTE
-     ═════════════════════════════════════ */
-/* Contenedor del título y botones */
+3) SECCIÓN TÍTULO + BOTÓN FLOTANTE
+═════════════════════════════════════ */
 .title-container {
   position: relative;
   display: flex;
   align-items: center;
-  /* Verticalmente centrados */
-  justify-content: center;
-  /* Título en el centro horizontal */
+  justify-content: space-between;
+
   width: 100%;
   margin-bottom: 20px;
 }
 
-/* Título principal */
+
 .title-container h1 {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: bold;
   margin: 0 50px;
-  /* Deja espacio horizontal para los botones */
   text-align: center;
+  color: #222;
 }
 
-/* Botón Lupa (a la izquierda) */
-/* Botón lupa (a la izquierda) */
-.search-button {
-  position: absolute;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  background-color: #666;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  font-size: 20px;
-  cursor: pointer;
-
-  /* Centrado del ícono */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* Outline y transiciones, si deseas */
-  outline: 1px solid #888;
-  transition: background 0.2s, outline 0.2s;
-}
-
-.search-button:hover {
-  background-color: #888;
-  outline-color: #aaa;
-}
-
-/* Botón flotante (+) a la derecha */
+.search-button,
 .floating-button {
-  position: absolute;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  background-color: #666;
-  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  font-size: 24px;
+  background-color: #6a94d4;
+  color: white;
   border: none;
-  border-radius: 50%;
-  font-size: 20px;
-  cursor: pointer;
-
-  /* Centrado del ícono */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  outline: 1px solid #888;
-  transition: background 0.2s, outline 0.2s;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
+.search-button:hover,
 .floating-button:hover {
-  background-color: #888;
-  outline-color: #aaa;
+  background-color: #4977b1;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+.search-button {
+  left: 0;
+}
 
+.floating-button {
+  right: 0;
+}
 
 /* ═════════════════════════════════════
-     4) SECCIÓN INPUT (Enlace de la nota)
-     ═════════════════════════════════════ */
+4) SECCIÓN INPUT (Enlace de la nota)
+═════════════════════════════════════ */
 .input-section {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 20px;
-  border: 1px solid #333;
-  /* sutil contorno */
-  padding: 16px;
+  padding: 20px;
   border-radius: 8px;
-  background-color: #222;
-  /* un gris ligeramente más claro para contraste */
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* Fila 1: label + input + botones */
 .input-row {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
   gap: 10px;
   width: 100%;
+  justify-content: center;
 }
 
-/* Etiqueta “Enlace de la nota:” */
 .note-label {
   font-weight: bold;
   font-size: 16px;
-  color: #ccc;
-  /* Un gris claro para contraste */
+  color: #333;
 }
 
-/* Input principal */
 .note-input {
-  padding: 12px;
+  padding: 14px;
   width: 360px;
-  border-radius: 5px;
-  border: 1px solid #444;
-  background-color: #2b2b2b;
-  color: #fff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #333;
   font-size: 16px;
-  text-align: center;
-  transition: border 0.2s;
+  transition: border 0.3s;
 }
 
-.note-input:hover,
 .note-input:focus {
-  border-color: #777;
-  /* Destaca el input al hover/focus */
+  border-color: #6a94d4;
 }
 
-/* Botones en general */
+.mini-button {
+  background-color: #6a94d4;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: auto;
+}
+
+.mini-button:hover {
+  background-color: #4977b1;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.copy-icon-button {
+  background-color: transparent;
+  border: none;
+  color: #6a94d4;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 10px;
+  transition: color 0.3s;
+}
+
+.copy-icon-button:hover {
+  color: #4977b1;
+}
+
 button {
-  background-color: #444;
-  color: #fff;
-  border: 1px solid #555;
-  /* Añadimos outline sutil */
-  padding: 12px 18px;
-  border-radius: 5px;
+  background-color: #6a94d4;
+  color: white;
+  border: 1px solid #6a94d4;
+  padding: 14px 20px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  transition: background 0.2s, border 0.2s;
+  transition: background 0.3s, border 0.3s;
 }
 
 button:hover {
-  background-color: #555;
-  border-color: #666;
+  background-color: #4977b1;
+  border-color: #4977b1;
 }
 
-/* Fila 2: botones “Copiar URL Original” / “Copiar URL Acortada” */
 .url-buttons {
   display: flex;
+  gap: 12px;
   justify-content: center;
-  gap: 16px;
-  width: 100%;
 }
 
+.url-buttons button {
+  background-color: #6a94d4;
+  color: white;
+  border: 1px solid #6a94d4;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background 0.3s, border 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.url-buttons button:hover {
+  background-color: #4977b1;
+  border-color: #4977b1;
+}
+
+.url-buttons button:first-child::before {
+  content: "🔗";
+}
+
+.url-buttons button:last-child::before {
+  content: "🔄";
+}
+
+
 /* ═════════════════════════════════════
-     5) CONTENEDOR DE TARJETAS 
-     ═════════════════════════════════════ */
+5) CONTENEDOR DE TARJETAS 
+═════════════════════════════════════ */
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 20px;
   justify-content: center;
   width: 100%;
   margin-top: 20px;
 }
 
-/* Tarjeta individual (Facebook, Twitter, WhatsApp) */
+.card-header {
+  font-size: 22px;
+  font-weight: bold;
+  width: 100%;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e1e1e1;
+  margin-bottom: 12px;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .card {
-  background-color: #2c2c2c;
-  border-radius: 8px;
-  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
   flex: 1 1 320px;
   min-width: 320px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #3a3a3a;
-  /* Outline que genera más contraste */
-  transition: background 0.2s, border 0.2s;
+  border: 1px solid #e1e1e1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
-  border-color: #555;
-  /* Al pasar hover, resaltamos más la tarjeta */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
-/* Encabezado de cada tarjeta */
-.card-header {
-  font-size: 20px;
-  font-weight: bold;
-  width: 100%;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #444;
-  margin-bottom: 10px;
-  color: #f0f0f0;
-  /* Un tono ligeramente más claro para destacar el título */
+.card-header button {
+  background-color: #d1d1d1; /* Fondo gris para destacarse */
+  border: none;
+  color: #333; /* Color del ícono */
+  font-size: 18px; /* Reducir el tamaño del ícono */
+  width: 36px; /* Botón más pequeño y cuadrado */
+  height: 36px; /* Asegurando que el botón sea cuadrado */
+  border-radius: 8px; /* Bordes redondeados */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* Textarea para el copy */
+.card-header button:hover {
+  background-color: #b0b0b0; /* Fondo gris más oscuro al pasar el cursor */
+  color: #4977b1; /* Cambio de color al hacer hover */
+}
+
 .card textarea {
   width: 95%;
   height: 100px;
-  background-color: #1f1f1f;
-  color: #fff;
-  border: 1px solid #444;
-  border-radius: 5px;
-  padding: 8px;
+  background-color: #f4f4f4;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
   resize: none;
   font-size: 14px;
-  text-align: center;
-  margin-bottom: 10px;
-  transition: border 0.2s;
+  transition: border 0.3s;
 }
 
-.card textarea:hover {
-  border-color: #666;
+.card textarea:focus {
+  border-color: #6a94d4;
 }
 
-/* Botón “Copiar” dentro de la tarjeta */
 .card button {
-  width: 80%;
+  width: 22px;
   font-size: 16px;
   align-self: center;
 }
 
+
 /* ═════════════════════════════════════
-     6) Responsividad (pantallas pequeñas)
-     ═════════════════════════════════════ */
+6) Responsividad (pantallas pequeñas)
+═════════════════════════════════════ */
 @media (max-width: 600px) {
   .floating-button {
     position: static;

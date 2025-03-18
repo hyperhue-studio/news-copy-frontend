@@ -7,7 +7,7 @@ const overlayStyle = {
   left: 0,
   width: "100vw",
   height: "100vh",
-  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  backgroundColor: "rgba(0, 0, 0, 0.3)",  // Fondo más suave
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -15,38 +15,49 @@ const overlayStyle = {
 };
 
 const modalStyle = {
-  backgroundColor: "#2c2c2c",
-  padding: "20px",
-  borderRadius: "5px",
+  backgroundColor: "#ffffff",  // Fondo más claro para el modal
+  padding: "30px",
+  borderRadius: "12px",
   width: "400px",
-  color: "#fff"
+  color: "#333",
+  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)"  // Sombra suave para profundidad
 };
 
 const inputStyle = {
   width: "100%",
-  padding: "8px",
-  marginBottom: "12px",
-  borderRadius: "5px",
-  border: "1px solid #444",
-  backgroundColor: "#1f1f1f",
-  color: "#fff"
+  padding: "12px",
+  marginBottom: "16px",
+  borderRadius: "8px",
+  border: "1px solid #ddd",
+  backgroundColor: "#f4f4f4",  // Fondo claro para los inputs
+  color: "#333",
+  fontSize: "16px",
+  transition: "border 0.3s"
 };
 
 const buttonStyle = {
-  backgroundColor: "#444",
+  backgroundColor: "#6a94d4",  // Azul suave
   color: "#fff",
   border: "none",
-  padding: "10px 16px",
-  borderRadius: "5px",
+  padding: "12px 18px",
+  borderRadius: "8px",
   cursor: "pointer",
-  marginRight: "8px"
+  marginRight: "12px",
+  fontSize: "16px",
+  transition: "background 0.3s, box-shadow 0.3s",
+  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)"
+};
+
+const buttonHoverStyle = {
+  backgroundColor: "#4977b1",  // Azul más oscuro al hacer hover
+  boxShadow: "0 6px 12px rgba(0, 0, 0, 0.2)"
 };
 
 function BuscarNoticiasModal({ onClose, backendUrl }) {
   const [consulta, setConsulta] = useState("");
   const [resultado, setResultado] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
 
-  // Maneja la búsqueda llamando al endpoint /buscar_similar
   const handleBuscar = async () => {
     try {
       if (!consulta.trim()) {
@@ -56,8 +67,7 @@ function BuscarNoticiasModal({ onClose, backendUrl }) {
       const resp = await axios.post(`${backendUrl}/buscar_similar`, {
         texto: consulta
       });
-      
-      // resp.data: { id, score, metadata: { noticia, copy } }
+
       setResultado(resp.data);
     } catch (error) {
       console.error("Error al buscar noticia similar:", error);
@@ -65,7 +75,6 @@ function BuscarNoticiasModal({ onClose, backendUrl }) {
     }
   };
 
-  // Cerrar modal haciendo click en overlay
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -75,7 +84,7 @@ function BuscarNoticiasModal({ onClose, backendUrl }) {
   return (
     <div style={overlayStyle} onClick={handleOverlayClick}>
       <div style={modalStyle}>
-        <h3 style={{ marginTop: 0 }}>Buscar Noticia Similar</h3>
+        <h3 style={{ marginTop: 0, color: "#333" }}>Buscar Noticia Similar</h3>
         <input
           style={inputStyle}
           type="text"
@@ -84,17 +93,25 @@ function BuscarNoticiasModal({ onClose, backendUrl }) {
           onChange={(e) => setConsulta(e.target.value)}
         />
         <div style={{ textAlign: "right", marginBottom: "10px" }}>
-          <button style={buttonStyle} onClick={handleBuscar}>
+          <button
+            style={isHovered ? { ...buttonStyle, ...buttonHoverStyle } : buttonStyle}
+            onClick={handleBuscar}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             Buscar
           </button>
-          <button style={buttonStyle} onClick={onClose}>
+          <button
+            style={buttonStyle}
+            onClick={onClose}
+          >
             Cerrar
           </button>
         </div>
 
         {/* Mostrar resultado si existe */}
         {resultado && (
-          <div style={{ backgroundColor: "#333", padding: "10px", borderRadius: "5px" }}>
+          <div style={{ backgroundColor: "#f4f4f4", padding: "12px", borderRadius: "8px" }}>
             <p><strong>ID:</strong> {resultado.id}</p>
             <p><strong>Score:</strong> {resultado.score}</p>
             <p><strong>Título/Noticia:</strong> {resultado.metadata?.noticia}</p>
