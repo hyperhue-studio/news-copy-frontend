@@ -265,13 +265,13 @@ button:hover {
 }
 
 .card-header button {
-  background-color: #d1d1d1; /* Fondo gris para destacarse */
+  background-color: #d1d1d1;
   border: none;
-  color: #333; /* Color del ícono */
-  font-size: 18px; /* Reducir el tamaño del ícono */
-  width: 36px; /* Botón más pequeño y cuadrado */
-  height: 36px; /* Asegurando que el botón sea cuadrado */
-  border-radius: 8px; /* Bordes redondeados */
+  color: #333;
+  font-size: 18px;
+  width: 36px; 
+  height: 36px; 
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -280,8 +280,8 @@ button:hover {
 }
 
 .card-header button:hover {
-  background-color: #b0b0b0; /* Fondo gris más oscuro al pasar el cursor */
-  color: #4977b1; /* Cambio de color al hacer hover */
+  background-color: #b0b0b0;
+  color: #4977b1;
 }
 
 .card textarea {

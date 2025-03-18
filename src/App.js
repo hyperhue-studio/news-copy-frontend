@@ -70,7 +70,6 @@ function App() {
 
       <div className="input-section">
         <div className="input-row">
-          {/* Minibotones en la barra de enlace */}
           <button
             className="mini-button"
             onClick={handlePaste}
